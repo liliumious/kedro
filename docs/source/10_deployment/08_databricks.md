@@ -141,7 +141,12 @@ dbutils.fs.ls("dbfs:/iris-databricks/data/01_raw/")
 # [FileInfo(path='dbfs:/iris-databricks/data/01_raw/.gitkeep', name='.gitkeep', size=0),
 # FileInfo(path='dbfs:/iris-databricks/data/01_raw/iris.csv', name='iris.csv', size=3858)]
 ```
+Note: When using Databricks Runtime 7.3 LTS or above, use the `DBUtils` module as per the following:
 
+```python
+spark = SparkSession.builder.getOrCreate()
+dbutils = DBUtils(spark)
+```
 Then type `exit()` to terminate the Python session.
 
 Finally, modify the project catalog so that the `example_iris_data` dataset points to a new DBFS location instead of local. You can use Kedro [configuration environments](https://kedro.readthedocs.io/en/stable/04_kedro_project_setup/02_configuration.html#loading) fir this.
